@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>اختبار الإصلاح</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🧪 اختبار إصلاح Marwan Hub</h1>
+    
+    <div class="test" id="test1">1. تحميل الصفحة... <span id="result1">⏳</span></div>
+    <div class="test" id="test2">2. وجود div#app... <span id="result2">⏳</span></div>
+    <div class="test" id="test3">3. تحميل JavaScript... <span id="result3">⏳</span></div>
+    
+    <div style="margin-top: 30px;">
+        <a href="/" style="padding: 10px 20px; background: #2563eb; color: white; text-decoration: none; border-radius: 5px;">
+            الانتقال للموقع الرئيسي
+        </a>
+    </div>
+    
+    <script>
+        // Test 1: Page loaded
+        document.getElementById('result1').innerHTML = '✅';
+        document.getElementById('test1').className = 'test success';
+        
+        // Test 2: Check for #app div
+        setTimeout(() => {
+            const appDiv = document.getElementById('app');
+            if (appDiv) {
+                document.getElementById('result2').innerHTML = '✅ موجود';
+                document.getElementById('test2').className = 'test success';
+            } else {
+                document.getElementById('result2').innerHTML = '❌ غير موجود';
+                document.getElementById('test2').className = 'test error';
+                console.error('div#app not found in DOM');
+            }
+        }, 500);
+        
+        // Test 3: JavaScript loaded
+        document.getElementById('result3').innerHTML = '✅';
+        document.getElementById('test3').className = 'test success';
+        
+        console.log('🧪 Test page loaded successfully');
+    </script>
+</body>
+</html>

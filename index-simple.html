@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marwan Hub | حلول تسويق رقمي وتطوير مواقع للشركات</title>
+    <meta name="description" content="Marwan Hub وكالة تسويق رقمي وتطوير مواقع في مصر، تقدم حلول متكاملة للشركات الناشئة والمتوسطة">
+    
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="/assets/styles/reset.css">
+    <link rel="stylesheet" href="/assets/styles/variables.css">
+    <link rel="stylesheet" href="/assets/styles/base.css">
+    <link rel="stylesheet" href="/assets/styles/corporate.css">
+    
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* أنماط إضافية للصفحة الرئيسية */
+        .hero-section {
+            background: linear-gradient(135deg, #1E3A8A 0%, #1a2f6d 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 20px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #1E3A8A;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1a2f6d;
+            transform: translateY(-2px);
+        }
+        
+        .nav-bar {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #111827;
+            font-weight: 500;
+            padding: 10px;
+        }
+        
+        .nav-links a:hover {
+            color: #1E3A8A;
+        }
+        
+        .footer {
+            background: #1E3A8A;
+            color: white;
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="nav-bar">
+        <ul class="nav-links">
+            <li><a href="/">🏠 الرئيسية</a></li>
+            <li><a href="/services">🛠️ الخدمات</a></li>
+            <li><a href="/about">👥 من نحن</a></li>
+            <li><a href="/portfolio">🎨 الأعمال</a></li>
+            <li><a href="/clients">🤝 العملاء</a></li>
+            <li><a href="/contact">📞 التواصل</a></li>
+            <li><a href="/blog">📝 المدونة</a></li>
+        </ul>
+    </nav>
+
+    <!-- قسم الهيرو -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Marwan Hub – شريكك في النمو الرقمي</h1>
+            <p class="hero-description">
+                وكالة تسويق رقمي وتطوير مواقع في مصر، تقدم حلول متكاملة للشركات الناشئة والمتوسطة
+                لبناء حضور رقمي قوي وتحقيق نمو مستدام.
+            </p>
+            <a href="/contact" class="btn">ابدأ مشروعك الآن</a>
+            <a href="/services" class="btn" style="background: #6D28D9;">اكتشف خدماتنا</a>
+        </div>
+    </section>
+
+    <!-- الخدمات -->
+    <section class="services-grid container">
+        <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>إدارة السوشيال ميديا</h3>
+            <p>إدارة احترافية لحسابات التواصل الاجتماعي بخطط استراتيجية مدروسة</p>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">🎯</div>
+            <h3>حملات إعلانية ممولة</h3>
+            <p>حملات إعلانية موجهة على Google و Meta تحقق أعلى عائد استثمار</p>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">🔍</div>
+            <h3>تحسين محركات البحث</h3>
+            <p>تحسين موقعك لمحركات البحث لزيادة الظهور العضوي والزوار</p>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>تصميم هوية بصرية</h3>
+            <p>إنشاء هوية بصرية متكاملة تعكس شخصية علامتك التجارية</p>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">💻</div>
+            <h3>تطوير مواقع وتطبيقات</h3>
+            <p>تطوير حلول تقنية سريعة وآمنة وقابلة للتوسع</p>
+        </div>
+        
+        <div class="service-card">
+            <div class="service-icon">📊</div>
+            <h3>استشارات تسويقية</h3>
+            <p>استشارات متخصصة وبناء استراتيجيات مبنية على البيانات</p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="text-align: center; padding: 60px 20px; background: #F3F4F6;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">مستعدون لبدء مشروعك؟</h2>
+        <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto 40px;">
+            تواصل معنا اليوم للحصول على استشارة مجانية وخطة عمل مخصصة لمشروعك
+        </p>
+        <a href="/contact" class="btn" style="font-size: 1.25rem; padding: 15px 40px;">تواصل معنا الآن</a>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container" style="max-width: 1200px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Marwan Hub</h3>
+                    <p style="opacity: 0.9;">
+                        وكالة تسويق رقمي وتطوير مواقع في مصر تقدم حلولًا متكاملة للشركات الناشئة والمتوسطة
+                    </p>
+                </div>
+                
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="/services" style="color: white; opacity: 0.9; text-decoration: none;">الخدمات</a></li>
+                        <li><a href="/about" style="color: white; opacity: 0.9; text-decoration: none;">من نحن</a></li>
+                        <li><a href="/portfolio" style="color: white; opacity: 0.9; text-decoration: none;">الأعمال</a></li>
+                        <li><a href="/contact" style="color: white; opacity: 0.9; text-decoration: none;">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>تواصل معنا</h4>
+                    <p>📞 01277831988</p>
+                    <p>📱 +201277831988</p>
+                    <p>✉️ marwanhub.eg@gmail.com</p>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px; padding-top: 20px; text-align: center;">
+                <p>© 2025 Marwan Hub. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تنفيذ بسيط للتنقل بين الصفحات
+        document.addEventListener('DOMContentLoaded', function() {
+            // جعل جميع الروابط تعمل بدون إعادة تحميل (SPA بسيط)
+            document.querySelectorAll('a[href^="/"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '/contact') {
+                        window.location.href = '/contact-simple.html';
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // إضافة تأثيرات بسيطة
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

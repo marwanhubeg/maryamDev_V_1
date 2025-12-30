@@ -1,0 +1,295 @@
+// الصفحة الرئيسية
+
+import Header from '../components/ui/Header.js';
+import Footer from '../components/ui/Footer.js';
+import HeroSection from '../components/layout/HeroSection.js';
+import ServicesSection from '../components/layout/ServicesSection.js';
+import StatisticsSection from '../components/layout/StatisticsSection.js';
+import GallerySection from '../components/layout/GallerySection.js';
+import ClientsSection from '../components/layout/ClientsSection.js';
+import ContactSection from '../components/layout/ContactSection.js';
+import TopBar from '../components/ui/TopBar.js';
+import AnnouncementBar from '../components/ui/AnnouncementBar.js';
+
+class HomePage {
+    constructor(eventBus, stateManager) {
+        this.eventBus = eventBus;
+        this.stateManager = stateManager;
+        
+        // المكونات
+        this.components = {
+            topBar: null,
+            announcementBar: null,
+            header: null,
+            hero: null,
+            services: null,
+            statistics: null,
+            gallery: null,
+            clients: null,
+            contact: null,
+            footer: null
+        };
+        
+        // الاشتراك في تغييرات الحالة
+        this.unsubscribe = this.stateManager.subscribe(
+            this.onStateChange.bind(this),
+            ['ui.theme', 'ui.language', 'data.services']
+        );
+    }
+    
+    // التصيير
+    render() {
+        return `
+            <div class="page home-page">
+                ${this.components.topBar ? this.components.topBar.render() : ''}
+                ${this.components.announcementBar ? this.components.announcementBar.render() : ''}
+                ${this.components.header ? this.components.header.render() : ''}
+                
+                <main class="page-content">
+                    ${this.components.hero ? this.components.hero.render() : ''}
+                    ${this.components.services ? this.components.services.render() : ''}
+                    ${this.components.statistics ? this.components.statistics.render() : ''}
+                    ${this.components.gallery ? this.components.gallery.render() : ''}
+                    ${this.components.clients ? this.components.clients.render() : ''}
+                    ${this.components.contact ? this.components.contact.render() : ''}
+                </main>
+                
+                ${this.components.footer ? this.components.footer.render() : ''}
+            </div>
+        `;
+    }
+    
+    // التهيئة
+    async init() {
+        console.log('🏠 تهيئة الصفحة الرئيسية...');
+        
+        try {
+            // إنشاء المكونات
+            this.components.topBar = new TopBar(this.eventBus, this.stateManager);
+            this.components.announcementBar = new AnnouncementBar(this.eventBus, this.stateManager);
+            this.components.header = new Header(this.eventBus, this.stateManager);
+            this.components.hero = new HeroSection(this.eventBus, this.stateManager);
+            this.components.services = new ServicesSection(this.eventBus, this.stateManager);
+            this.components.statistics = new StatisticsSection(this.eventBus, this.stateManager);
+            this.components.gallery = new GallerySection(this.eventBus, this.stateManager);
+            this.components.clients = new ClientsSection(this.eventBus, this.stateManager);
+            this.components.contact = new ContactSection(this.eventBus, this.stateManager);
+            this.components.footer = new Footer(this.eventBus, this.stateManager);
+            
+            // تهيئة المكونات
+            await Promise.all([
+                this.components.topBar.init(),
+                this.components.announcementBar.init(),
+                this.components.header.init(),
+                this.components.hero.init(),
+                this.components.services.init(),
+                this.components.statistics.init(),
+                this.components.gallery.init(),
+                this.components.clients.init(),
+                this.components.contact.init(),
+                this.components.footer.init()
+            ]);
+            
+            // ربط الأحداث
+            this.bindEvents();
+            
+            // تحديث عنوان الصفحة
+            document.title = 'الرئيسية - مارون هاب';
+            
+            // إطلاق event تحميل الصفحة
+            this.eventBus.emit('page:loaded', {
+                name: 'home',
+                timestamp: new Date().toISOString()
+            });
+            
+            console.log('✅ الصفحة الرئيسية مهيأة بنجاح');
+            
+        } catch (error) {
+            console.error('❌ خطأ في تهيئة الصفحة الرئيسية:', error);
+            throw error;
+        }
+    }
+    
+    // التعامل مع تغيير الحالة
+    onStateChange(newState, oldState, changedPaths) {
+        console.log('🔄 تغيير الحالة في الصفحة الرئيسية:', changedPaths);
+        
+        // إذا تغيرت الخدمات، تحديث مكون الخدمات
+        if (changedPaths.includes('data.services') && this.components.services) {
+            this.components.services.updateServices(newState.data.services);
+        }
+        
+        // إذا تغيرت السمة، تحديث جميع المكونات
+        if (changedPaths.includes('ui.theme')) {
+            this.updateTheme(newState.ui.theme);
+        }
+    }
+    
+    // تحديث السمة
+    updateTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // تحديث جميع المكونات
+        Object.values(this.components).forEach(component => {
+            if (component && component.updateTheme) {
+                component.updateTheme(theme);
+            }
+        });
+    }
+    
+    // ربط الأحداث
+    bindEvents() {
+        // الاستماع لأحداث التمرير
+        window.addEventListener('scroll', this.handleScroll.bind(this));
+        
+        // الاستماع لأحداث النقر
+        document.addEventListener('click', this.handleClick.bind(this));
+        
+        // الاستماع لأحداث الأزرار
+        this.eventBus.on('button:click', this.handleButtonClick.bind(this));
+        
+        // الاستماع لأحداث النماذج
+        this.eventBus.on('form:submit', this.handleFormSubmit.bind(this));
+    }
+    
+    // التعامل مع التمرير
+    handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // إظهار/إخفاء زر العودة للأعلى
+        const backToTop = document.querySelector('.back-to-top');
+        if (backToTop) {
+            if (scrollTop > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+        
+        // تحديث الحالة
+        this.stateManager.setState({
+            ui: {
+                ...this.stateManager.state.ui,
+                scrollPosition: scrollTop
+            }
+        });
+    }
+    
+    // التعامل مع النقر
+    handleClick(event) {
+        const target = event.target;
+        
+        // النقر على زر العودة للأعلى
+        if (target.closest('.back-to-top')) {
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // النقر على رابط داخلي
+        if (target.closest('a[href^="#"]')) {
+            event.preventDefault();
+            const href = target.getAttribute('href');
+            const targetElement = document.querySelector(href);
+            
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+    }
+    
+    // التعامل مع نقر الأزرار
+    handleButtonClick(data) {
+        console.log('🔘 زر تم النقر عليه:', data);
+        
+        switch (data.action) {
+            case 'quote':
+                this.openQuoteModal();
+                break;
+            
+            case 'contact':
+                this.openContactModal();
+                break;
+            
+            case 'whatsapp':
+                this.openWhatsApp();
+                break;
+            
+            case 'service':
+                this.openServiceDetails(data.serviceId);
+                break;
+        }
+    }
+    
+    // التعامل مع إرسال النماذج
+    handleFormSubmit(data) {
+        console.log('📝 نموذج تم إرساله:', data);
+        
+        // عرض رسالة نجاح
+        this.showMessage('تم إرسال النموذج بنجاح', 'success');
+    }
+    
+    // فتح نموذج عرض السعر
+    openQuoteModal() {
+        this.stateManager.actions.openModal('quote');
+    }
+    
+    // فتح نموذج الاتصال
+    openContactModal() {
+        this.stateManager.actions.openModal('contact');
+    }
+    
+    // فتح واتساب
+    openWhatsApp() {
+        const config = this.stateManager.getState('config');
+        const phone = config.company.whatsapp || config.company.phone;
+        const message = 'مرحباً، أريد استشارة حول خدماتكم';
+        
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+    
+    // فتح تفاصيل الخدمة
+    openServiceDetails(serviceId) {
+        // التنقل إلى صفحة الخدمة
+        this.eventBus.emit('navigate:to', {
+            path: `/services/${serviceId}`
+        });
+    }
+    
+    // عرض رسالة
+    showMessage(text, type = 'info') {
+        this.stateManager.actions.addNotification({
+            type,
+            text,
+            persistent: false
+        });
+    }
+    
+    // تدمير الصفحة
+    destroy() {
+        // إلغاء الاشتراكات
+        if (this.unsubscribe) {
+            this.unsubscribe();
+        }
+        
+        // إزالة مستمعي الأحداث
+        window.removeEventListener('scroll', this.handleScroll);
+        document.removeEventListener('click', this.handleClick);
+        
+        // تدمير المكونات
+        Object.values(this.components).forEach(component => {
+            if (component && component.destroy) {
+                component.destroy();
+            }
+        });
+        
+        console.log('🗑️ الصفحة الرئيسية دمرت');
+    }
+}
+
+export default HomePage;

@@ -1,0 +1,232 @@
+/* 
+ * Marwan Hub - About Page Styles
+ * أنماط خاصة بصفحة "من نحن"
+ */
+
+/* ===== ABOUT HERO ===== */
+.about-hero {
+  padding: var(--spacing-4xl) 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.about-hero .hero-title {
+  font-size: 3.5rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-hero .hero-description {
+  font-size: 1.25rem;
+  color: var(--color-text-gray);
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ===== ABOUT CONTENT ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.about-card {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  transition: transform var(--transition-normal);
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-lg);
+  display: inline-block;
+}
+
+.about-title {
+  font-size: 1.75rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-text {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-gray);
+}
+
+/* ===== VALUES SECTION ===== */
+.values-list {
+  margin-top: var(--spacing-lg);
+}
+
+.value-item {
+  margin-bottom: var(--spacing-lg);
+  text-align: right;
+}
+
+.value-item:last-child {
+  margin-bottom: 0;
+}
+
+.value-item h3 {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.value-item p {
+  font-size: 1rem;
+  color: var(--color-text-gray);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ===== STORY SECTION ===== */
+.story-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.story-content p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-gray);
+  margin-bottom: var(--spacing-lg);
+}
+
+.story-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.team-member {
+  text-align: center;
+  padding: var(--spacing-xl);
+  transition: all var(--transition-normal);
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.member-avatar {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-lg);
+  display: inline-block;
+}
+
+.member-name {
+  font-size: 1.5rem;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-xs);
+}
+
+.member-role {
+  font-size: 1rem;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-md);
+}
+
+.member-bio {
+  font-size: 0.95rem;
+  color: var(--color-text-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== CTA SECTION ===== */
+.about-cta {
+  padding: var(--spacing-4xl) 0;
+}
+
+.about-cta .section-title {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.about-cta .section-description {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+  opacity: 0.9;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 767px) {
+  .about-hero .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-hero .hero-description {
+    font-size: 1.125rem;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-card {
+    padding: var(--spacing-xl);
+  }
+  
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-cta .section-title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-hero .hero-title {
+    font-size: 3rem;
+  }
+  
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-card,
+.team-member {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.about-card:nth-child(1) { animation-delay: 0.1s; }
+.about-card:nth-child(2) { animation-delay: 0.2s; }
+.about-card:nth-child(3) { animation-delay: 0.3s; }
+.team-member:nth-child(1) { animation-delay: 0.1s; }
+.team-member:nth-child(2) { animation-delay: 0.2s; }
+.team-member:nth-child(3) { animation-delay: 0.3s; }

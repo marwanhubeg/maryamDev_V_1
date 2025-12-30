@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>اختبار بسيط</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>اختبار النظام البسيط</h1>
+    
+    <div id="test-results">
+        <p>جاري الاختبار...</p>
+    </div>
+    
+    <script type="module">
+        console.log('بدء الاختبار البسيط...');
+        
+        try {
+            // تحميل المكون الرئيسي فقط
+            const module = await import('./pages/HomePage.js');
+            document.getElementById('test-results').innerHTML = 
+                '<p class="success">✅ تم تحميل HomePage.js بنجاح!</p>';
+            console.log('✅ HomePage محمل:', module.default);
+        } catch (error) {
+            document.getElementById('test-results').innerHTML = 
+                `<p class="error">❌ خطأ: ${error.message}</p>`;
+            console.error('❌ خطأ في التحميل:', error);
+        }
+    </script>
+</body>
+</html>

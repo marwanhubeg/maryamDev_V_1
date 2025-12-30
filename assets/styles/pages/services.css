@@ -1,0 +1,217 @@
+/* 
+ * Marwan Hub - Services Page Styles
+ * أنماط خاصة بصفحة الخدمات
+ */
+
+/* ===== SERVICES HERO ===== */
+.services-hero {
+  padding: var(--spacing-4xl) 0;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+}
+
+.services-hero .hero-title {
+  font-size: 3rem;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.services-hero .hero-description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ===== SERVICES LIST ===== */
+.services-list {
+  padding: var(--spacing-4xl) 0;
+}
+
+.service-detail {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.service-detail:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-light);
+}
+
+.service-detail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.service-detail:hover::before {
+  opacity: 1;
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.service-icon {
+  font-size: 3rem;
+  background: var(--color-light-gray);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-title {
+  font-size: 1.75rem;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.service-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-gray);
+  margin-bottom: var(--spacing-lg);
+}
+
+.service-features {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-lg) 0 0 0;
+}
+
+.service-features li {
+  padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-xl);
+  position: relative;
+  color: var(--color-text-gray);
+  line-height: 1.6;
+}
+
+.service-features li::before {
+  content: '✓';
+  position: absolute;
+  right: 0;
+  color: var(--color-success);
+  font-weight: bold;
+}
+
+/* ===== SERVICES CTA ===== */
+.services-cta {
+  padding: var(--spacing-4xl) 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.services-cta .section-title {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.services-cta .section-description {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+.cta-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xl);
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.service-detail {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.service-detail.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 767px) {
+  .services-hero .hero-title {
+    font-size: 2.25rem;
+  }
+  
+  .services-hero .hero-description {
+    font-size: 1.125rem;
+  }
+  
+  .service-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-md);
+  }
+  
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-detail {
+    padding: var(--spacing-xl);
+  }
+  
+  .cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services-hero .hero-title {
+    font-size: 2.75rem;
+  }
+  
+  .service-title {
+    font-size: 1.625rem;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .service-detail {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 2px solid var(--color-border);
+  }
+  
+  .services-cta {
+    display: none;
+  }
+}

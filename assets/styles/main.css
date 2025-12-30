@@ -1,0 +1,29 @@
+/* 
+ * Marwan Hub - Main CSS File
+ * تجميع جميع ملفات CSS
+ */
+
+/* 1. Reset & Base */
+@import url('reset.css');
+@import url('variables.css');
+@import url('base.css');
+
+/* 2. Utilities */
+@import url('utilities.css');
+
+/* 3. Corporate Styles */
+@import url('corporate.css');
+
+/* 4. Components */
+@import url('components/header.css');
+@import url('components/footer.css');
+
+/* 5. Pages */
+@import url('pages/home.css');
+@import url('pages/services.css');
+@import url('pages/about.css');
+@import url('pages/portfolio.css');
+@import url('pages/contact.css');
+
+/* 6. Responsive */
+@import url('responsive.css');

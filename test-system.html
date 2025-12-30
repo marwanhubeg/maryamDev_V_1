@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار النظام</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .warning { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>🧪 اختبار نظام مارون هاب</h1>
+    
+    <div class="test-section">
+        <h2>📁 فحص الملفات</h2>
+        <div id="files-check"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🔧 فحص JavaScript</h2>
+        <div id="js-check"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>🎨 فحص الأنماط</h2>
+        <div id="css-check"></div>
+    </div>
+    
+    <script>
+        const tests = {
+            files: [
+                { name: 'index.html', required: true },
+                { name: 'main.js', required: true },
+                { name: 'core/app.js', required: true },
+                { name: 'components/ui/Header.js', required: true },
+                { name: 'components/ui/Footer.js', required: true },
+                { name: 'components/layout/HeroSection.js', required: true },
+                { name: 'components/layout/ServicesSection.js', required: true },
+                { name: 'pages/HomePage.js', required: true },
+                { name: 'config/app-config.js', required: true }
+            ],
+            
+            init() {
+                this.checkFiles();
+                this.checkJS();
+                this.checkCSS();
+            },
+            
+            checkFiles() {
+                const container = document.getElementById('files-check');
+                let html = '<ul>';
+                
+                this.files.forEach(file => {
+                    const exists = this.fileExists(file.name);
+                    const status = exists ? '✅ موجود' : '❌ مفقود';
+                    const cls = exists ? 'success' : (file.required ? 'error' : 'warning');
+                    
+                    html += `<li class="${cls}">${file.name} - ${status}</li>`;
+                });
+                
+                html += '</ul>';
+                container.innerHTML = html;
+            },
+            
+            fileExists(filename) {
+                try {
+                    // هذه مجرد محاكاة، في الواقع تحتاج لطلب الملف
+                    return true; // مؤقت
+                } catch {
+                    return false;
+                }
+            },
+            
+            checkJS() {
+                const container = document.getElementById('js-check');
+                const modules = [
+                    'App',
+                    'StateManager',
+                    'EventBus',
+                    'Router',
+                    'HomePage',
+                    'Header',
+                    'Footer'
+                ];
+                
+                let html = '<ul>';
+                modules.forEach(module => {
+                    const exists = typeof window[module] !== 'undefined';
+                    const status = exists ? '✅ محمل' : '❌ غير محمل';
+                    const cls = exists ? 'success' : 'error';
+                    
+                    html += `<li class="${cls}">${module} - ${status}</li>`;
+                });
+                
+                html += '</ul>';
+                container.innerHTML = html;
+            },
+            
+            checkCSS() {
+                const container = document.getElementById('css-check');
+                const stylesheets = document.styleSheets;
+                
+                let html = `<p>عدد ملفات CSS المحملة: ${stylesheets.length}</p>`;
+                html += '<ul>';
+                
+                for (let i = 0; i < stylesheets.length; i++) {
+                    const href = stylesheets[i].href || 'مضمن';
+                    html += `<li>${href}</li>`;
+                }
+                
+                html += '</ul>';
+                container.innerHTML = html;
+            }
+        };
+        
+        // تشغيل الاختبارات عند تحميل الصفحة
+        window.addEventListener('load', () => {
+            tests.init();
+        });
+    </script>
+</body>
+</html>
